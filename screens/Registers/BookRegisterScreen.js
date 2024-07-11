@@ -29,6 +29,7 @@ const BookRegisterScreen = ({ route, navigation }) => {
       transacao: 'Troca',
       formaPagamento: '',
       descricao: '',
+      foto: 'https://www.w3schools.com/howto/img_avatar.png'
     },
   });
 
@@ -40,6 +41,7 @@ const BookRegisterScreen = ({ route, navigation }) => {
       setValue('transacao', book.transacao);
       setValue('formaPagamento', book.formaPagamento);
       setValue('descricao', book.descricao);
+      setValue('foto', book.foto)
     }
   }, [book, isEdit, setValue]);
 
@@ -68,9 +70,15 @@ const BookRegisterScreen = ({ route, navigation }) => {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{isEdit ? 'EDITAR LIVRO' : 'CADASTRO LIVRO'}</Text>
       <Text style={styles.label}>FOTO DO LIVRO</Text>
-      <Image
-        source={{ uri: 'https://www.w3schools.com/howto/img_avatar.png' }}
-        style={styles.avatar}
+      <Controller
+        control={control}
+        name="foto"
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Image
+          source={{ uri: value }} 
+          style={styles.avatar}
+          />
+        )}
       />
       <Controller
         control={control}

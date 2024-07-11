@@ -1,33 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
+const user = {
+  nome: 'João Silva',
+  dataDeNascimento: '01/01/1990',
+  cpf: '123.456.789-00',
+  endereco: 'Rua das Flores, 123, São Paulo, SP'
+};
+
 const UsersRegisterScreen = () => {
+  const [userData, setUserData] = useState(user);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>CADASTRO USUARIO</Text>
       <TextInput
         label="NOME"
         mode="outlined"
+        value={userData.nome}
         style={styles.input}
+        onChangeText={(text) => setUserData({ ...userData, nome: text })}
       />
       <TextInput
         label="DATA DE NASCIMENTO"
         mode="outlined"
+        value={userData.dataDeNascimento}
         style={styles.input}
+        onChangeText={(text) => setUserData({ ...userData, dataDeNascimento: text })}
       />
       <TextInput
         label="CPF"
         mode="outlined"
+        value={userData.cpf}
         style={styles.input}
+        onChangeText={(text) => setUserData({ ...userData, cpf: text })}
       />
       <TextInput
         label="ENDEREÇO"
         mode="outlined"
+        value={userData.endereco}
         style={styles.input}
+        onChangeText={(text) => setUserData({ ...userData, endereco: text })}
       />
-      <Button mode="contained" style={styles.button}>
-        REGISTRAR
+      <Button mode='' style={styles.button}>
+        Alterar
       </Button>
     </View>
   );
