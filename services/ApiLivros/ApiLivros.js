@@ -1,59 +1,29 @@
-// services/ApiLivros/ApiLivros.js
-import axios from "axios";
+import RNFS from 'react-native-fs';
 
-const apiUrl = process.env.API_URL || 'https://sua-api-url.com/'; // Altere para sua URL real
+const filePath = RNFS.DocumentDirectoryPath + '/books.json';
 
-const getLivros = async () => {
+export const getLivros = async () => {
   try {
-    const response = await axios.get(`${apiUrl}livros`);
-    return response.data;
+    const fileExists = await RNFS.exists(filePath);
+    if (fileExists) {
+      const data = await RNFS.readFile(filePath, 'utf8');
+      return JSON.parse(data);
+    } else {
+      const initialData = [];
+      await RNFS.writeFile(filePath, JSON.stringify(initialData), 'utf8');
+      return initialData;
+    }
   } catch (error) {
-    console.error('Erro ao obter livros:', error);
+    console.error('Erro ao ler os livros:', error);
+    throw error;
   }
 };
 
-const getLivro = async (id) => {
+export const saveLivros = async (books) => {
   try {
-    const response = await axios.get(`${apiUrl}livros/${id}`);
-    return response.data;
+    await RNFS.writeFile(filePath, JSON.stringify(books), 'utf8');
   } catch (error) {
-    console.log('Erro ao obter o registro de livro', error);
+    console.error('Erro ao salvar os livros:', error);
+    throw error;
   }
 };
-
-const addLivro = async (data) => {
-  try {
-    const response = await axios.post(`${apiUrl}livros/`, data);
-    console.log('Livro adicionado com sucesso');
-  } catch (error) {
-    console.error('Erro ao adicionar livro:', error);
-  }
-};
-
-const excludeLivro = async (id) => {
-  try {
-    const response = await axios.delete(`${apiUrl}livros/${id}`);
-    console.log('Livro excluído com sucesso:', response.data);
-  } catch (erro) {
-    console.error('Erro ao excluir o livro', erro);
-  }
-};
-
-const updateLivro = async (id, dadosAtualizados) => {
-  try {
-    const response = await axios.put(`${apiUrl}livros/${id}`, dadosAtualizados);
-    console.log('Livro atualizado com sucesso:', response.data);
-  } catch (error) {
-    console.error('Erro ao atualizar livro:', error);
-  }
-};
-
-const apiLivros = {
-  getLivros,
-  getLivro,
-  addLivro,
-  updateLivro,
-  excludeLivro
-};
-
-export default apiLivros;

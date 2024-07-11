@@ -1,30 +1,22 @@
-//BookListScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Button } from 'react-native-paper';
-import apiLivros from '../../services/ApiLivros/ApiLivros';
+
+const livros = [
+  { id: '1', nome: 'A Biblioteca da Meia-Noite', genero: 'Ficção', condicao: 'Novo', transacao: 'Venda', foto: 'https://m.media-amazon.com/images/I/51kAYMwbQIL.SY445_SX342.jpg', descricao: 'Livro A Biblioteca da Meia-Noite' },
+  { id: '2', nome: 'Memórias Póstumas de Brás Cubas', genero: 'Romance', condicao: 'Usado', transacao: 'Troca', foto: 'https://m.media-amazon.com/images/I/51-9DsDM4DL.SY445_SX342.jpg', descricao: 'Descrição do Memórias Póstumas' },
+  { id: '3', nome: 'O Senhor dos Anéis', genero: 'Fantasia', condicao: 'Novo', transacao: 'Venda', foto: 'https://m.media-amazon.com/images/I/51yxqpcD9iL.SY445_SX342.jpg', descricao: 'Descrição do O Senhor dos Anéis' },
+  { id: '4', nome: 'Iracema', genero: 'Romance', condicao: 'Usado', transacao: 'Troca', foto: 'https://m.media-amazon.com/images/I/51-9DsDM4DL.SY445_SX342.jpg', descricao: 'Descrição do Iracema' },
+  { id: '5', nome: 'Grande Sertão: Veredas', genero: 'Romance', condicao: 'Novo', transacao: 'Venda', foto: 'https://m.media-amazon.com/images/I/51wdOrz6uNL.SY445_SX342.jpg', descricao: 'Descrição do Grande Sertão' }
+];
 
 const BookListScreen = ({ navigation }) => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState(livros);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        //const response = await apiLivros.getLivros();
-        //setBooks(response);
-      } catch (error) {
-        console.error('Erro ao obter livros:', error);
-      }
-    };
-
-    fetchBooks();
-  }, []);
-
-  useEffect(() => {
-    /*
     if (books.length === 0) {
       navigation.replace('BookRegister');
-    }*/
+    }
   }, [books]);
 
   const renderBooks = (books) => {
@@ -46,14 +38,10 @@ const BookListScreen = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      
-    <ScrollView contentContainerStyle={styles.container}>
       {renderBooks(books)}
       <Button mode="contained" onPress={() => navigation.navigate('BookRegister')} style={styles.button}>
         Adicionar Livro
       </Button>
-    </ScrollView>
-    
     </ScrollView>
   );
 };
@@ -97,14 +85,3 @@ const styles = StyleSheet.create({
 });
 
 export default BookListScreen;
-
-
-
-/*
-<ScrollView contentContainerStyle={styles.container}>
-      {renderBooks(books)}
-      <Button mode="contained" onPress={() => navigation.navigate('BookRegister')} style={styles.button}>
-        Adicionar Livro
-      </Button>
-    </ScrollView>
-    */

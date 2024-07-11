@@ -1,0 +1,21 @@
+[
+    {
+      "id": "1",
+      "nome": "A Biblioteca da Meia-Noite",
+      "genero": "Ficção",
+      "condicao": "Novo",
+      "transacao": "Venda",
+      "foto": "https://m.media-amazon.com/images/I/51kAYMwbQIL.SY445_SX342.jpg",
+      "descricao": "Livro A Biblioteca da Meia-Noite"
+    },
+    {
+      "id": "2",
+      "nome": "Memórias Póstumas de Brás Cubas",
+      "genero": "Romance",
+      "condicao": "Usado",
+      "transacao": "Troca",
+      "foto": "https://m.media-amazon.com/images/I/51-9DsDM4DL.SY445_SX342.jpg",
+      "descricao": "Descrição do Memórias Póstumas"
+    }
+  ]
+  

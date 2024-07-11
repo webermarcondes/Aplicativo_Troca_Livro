@@ -9,6 +9,7 @@ import MenuScreen from './screens/MenuScreen';
 import UsersRegisterScreen from './screens/Registers/UsersRegisterScreen'
 import LoginScreen from './screens/LoginScreen';
 import UserScreen from './screens/UserScreen';
+import ChatScreen from './screens/ChatScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ const App = () => {
           <Stack.Screen name = "UserRegister" component={UsersRegisterScreen}/>
           <Stack.Screen name = "LoginScreen" component={LoginScreen}/>
           <Stack.Screen name="UserScreen" component={UserScreen}/>
+          <Stack.Screen name='ChatScreen' component={ChatScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
     </BookProvider>
